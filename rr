@@ -13,7 +13,7 @@ local OrionLib = {
 	Connections = {},
 	Flags = {},
 	Themes = {
-		Bitstream Vera Sans = {
+		Default = {
 			Main = Color3.fromRGB(25, 25, 25),
 			Second = Color3.fromRGB(32, 32, 32),
 			Stroke = Color3.fromRGB(60, 60, 60),
@@ -22,7 +22,7 @@ local OrionLib = {
 			TextDark = Color3.fromRGB(150, 150, 150)
 		}
 	},
-	SelectedTheme = "Bitstream Vera Sans",
+	SelectedTheme = "Default",
 	Folder = nil,
 	SaveCfg = false
 }
@@ -418,7 +418,7 @@ function OrionLib:MakeNotification(NotificationConfig)
 			SetProps(MakeElement("Label", NotificationConfig.Name, 15), {
 				Size = UDim2.new(1, -30, 0, 20),
 				Position = UDim2.new(0, 30, 0, 0),
-				Font = Bitstream Vera Sans,
+				Font = BitstreamVeraSans,
 				Name = "Title"
 			}),
 			SetProps(MakeElement("Label", NotificationConfig.Content, 14), {
@@ -577,7 +577,7 @@ function OrionLib:MakeWindow(WindowConfig)
 			AddThemeObject(SetProps(MakeElement("Label", LocalPlayer.DisplayName, WindowConfig.HidePremium and 14 or 13), {
 				Size = UDim2.new(1, -60, 0, 13),
 				Position = WindowConfig.HidePremium and UDim2.new(0, 50, 0, 19) or UDim2.new(0, 50, 0, 12),
-				Font = Bitstream Vera Sans,
+				Font = BitstreamVeraSans,
 				ClipsDescendants = true
 			}), "Text"),
 			AddThemeObject(SetProps(MakeElement("Label", "", 12), {
@@ -701,7 +701,7 @@ function OrionLib:MakeWindow(WindowConfig)
 			AnchorPoint = Vector2.new(0.5, 0.5),
 			Position = UDim2.new(0.5, 19, 0.5, 0),
 			TextXAlignment = Enum.TextXAlignment.Center,
-			Font = Bitstream Vera Sans,
+			Font = BitstreamVeraSans,
 			TextTransparency = 1
 		})
 
@@ -805,7 +805,7 @@ function OrionLib:MakeWindow(WindowConfig)
 					AddThemeObject(SetProps(MakeElement("Label", Text, 15), {
 						Size = UDim2.new(1, -12, 1, 0),
 						Position = UDim2.new(0, 12, 0, 0),
-						Font = Bitstream Vera Sans,
+						Font = BitstreamVeraSans,
 						Name = "Content"
 					}), "Text"),
 					AddThemeObject(MakeElement("Stroke"), "Stroke")
@@ -829,7 +829,7 @@ function OrionLib:MakeWindow(WindowConfig)
 					AddThemeObject(SetProps(MakeElement("Label", Text, 15), {
 						Size = UDim2.new(1, -12, 0, 14),
 						Position = UDim2.new(0, 12, 0, 10),
-						Font = Bitstream Vera Sans,
+						Font = BitstreamVeraSans,
 						Name = "Title"
 					}), "Text"),
 					AddThemeObject(SetProps(MakeElement("Label", "", 13), {
@@ -874,7 +874,7 @@ function OrionLib:MakeWindow(WindowConfig)
 					AddThemeObject(SetProps(MakeElement("Label", ButtonConfig.Name, 15), {
 						Size = UDim2.new(1, -12, 1, 0),
 						Position = UDim2.new(0, 12, 0, 0),
-						Font = Bitstream Vera Sans,
+						Font = BitstreamVeraSans,
 						Name = "Content"
 					}), "Text"),
 					AddThemeObject(SetProps(MakeElement("Image", ButtonConfig.Icon), {
@@ -913,13 +913,13 @@ function OrionLib:MakeWindow(WindowConfig)
 			function ElementFunction:AddToggle(ToggleConfig)
 				ToggleConfig = ToggleConfig or {}
 				ToggleConfig.Name = ToggleConfig.Name or "Toggle"
-				ToggleConfig.Bitstream Vera Sans = ToggleConfig.Bitstream Vera Sans or false
+				ToggleConfig.Default = ToggleConfig.Default or false
 				ToggleConfig.Callback = ToggleConfig.Callback or function() end
 				ToggleConfig.Color = ToggleConfig.Color or Color3.fromRGB(9, 99, 195)
 				ToggleConfig.Flag = ToggleConfig.Flag or nil
 				ToggleConfig.Save = ToggleConfig.Save or false
 
-				local Toggle = {Value = ToggleConfig.Bitstream Vera Sans, Save = ToggleConfig.Save}
+				local Toggle = {Value = ToggleConfig.Default, Save = ToggleConfig.Save}
 
 				local Click = SetProps(MakeElement("Button"), {
 					Size = UDim2.new(1, 0, 1, 0)
@@ -951,7 +951,7 @@ function OrionLib:MakeWindow(WindowConfig)
 					AddThemeObject(SetProps(MakeElement("Label", ToggleConfig.Name, 15), {
 						Size = UDim2.new(1, -12, 1, 0),
 						Position = UDim2.new(0, 12, 0, 0),
-						Font = Bitstream Vera Sans,
+						Font = BitstreamVeraSans,
 						Name = "Content"
 					}), "Text"),
 					AddThemeObject(MakeElement("Stroke"), "Stroke"),
@@ -961,8 +961,8 @@ function OrionLib:MakeWindow(WindowConfig)
 
 				function Toggle:Set(Value)
 					Toggle.Value = Value
-					TweenService:Create(ToggleBox, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Toggle.Value and ToggleConfig.Color or OrionLib.Themes.Bitstream Vera Sans.Divider}):Play()
-					TweenService:Create(ToggleBox.Stroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Color = Toggle.Value and ToggleConfig.Color or OrionLib.Themes.Bitstream Vera Sans.Stroke}):Play()
+					TweenService:Create(ToggleBox, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Toggle.Value and ToggleConfig.Color or OrionLib.Themes.Default.Divider}):Play()
+					TweenService:Create(ToggleBox.Stroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Color = Toggle.Value and ToggleConfig.Color or OrionLib.Themes.Default.Stroke}):Play()
 					TweenService:Create(ToggleBox.Ico, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = Toggle.Value and 0 or 1, Size = Toggle.Value and UDim2.new(0, 20, 0, 20) or UDim2.new(0, 8, 0, 8)}):Play()
 					ToggleConfig.Callback(Toggle.Value)
 				end    
@@ -998,14 +998,14 @@ function OrionLib:MakeWindow(WindowConfig)
 				SliderConfig.Min = SliderConfig.Min or 0
 				SliderConfig.Max = SliderConfig.Max or 100
 				SliderConfig.Increment = SliderConfig.Increment or 1
-				SliderConfig.Bitstream Vera Sans = SliderConfig.Bitstream Vera Sans or 50
+				SliderConfig.Default = SliderConfig.Default or 50
 				SliderConfig.Callback = SliderConfig.Callback or function() end
 				SliderConfig.ValueName = SliderConfig.ValueName or ""
 				SliderConfig.Color = SliderConfig.Color or Color3.fromRGB(9, 149, 98)
 				SliderConfig.Flag = SliderConfig.Flag or nil
 				SliderConfig.Save = SliderConfig.Save or false
 
-				local Slider = {Value = SliderConfig.Bitstream Vera Sans, Save = SliderConfig.Save}
+				local Slider = {Value = SliderConfig.Default, Save = SliderConfig.Save}
 				local Dragging = false
 
 				local SliderDrag = SetChildren(SetProps(MakeElement("RoundFrame", SliderConfig.Color, 0, 5), {
@@ -1016,7 +1016,7 @@ function OrionLib:MakeWindow(WindowConfig)
 					AddThemeObject(SetProps(MakeElement("Label", "value", 13), {
 						Size = UDim2.new(1, -12, 0, 14),
 						Position = UDim2.new(0, 12, 0, 6),
-						Font = Bitstream Vera Sans,
+						Font = BitstreamVeraSans,
 						Name = "Value",
 						TextTransparency = 0
 					}), "Text")
@@ -1033,7 +1033,7 @@ function OrionLib:MakeWindow(WindowConfig)
 					AddThemeObject(SetProps(MakeElement("Label", "value", 13), {
 						Size = UDim2.new(1, -12, 0, 14),
 						Position = UDim2.new(0, 12, 0, 6),
-						Font = Bitstream Vera Sans,
+						Font = BitstreamVeraSans,
 						Name = "Value",
 						TextTransparency = 0.8
 					}), "Text"),
@@ -1047,7 +1047,7 @@ function OrionLib:MakeWindow(WindowConfig)
 					AddThemeObject(SetProps(MakeElement("Label", SliderConfig.Name, 15), {
 						Size = UDim2.new(1, -12, 0, 14),
 						Position = UDim2.new(0, 12, 0, 10),
-						Font = Bitstream Vera Sans,
+						Font = BitstreamVeraSans,
 						Name = "Content"
 					}), "Text"),
 					AddThemeObject(MakeElement("Stroke"), "Stroke"),
@@ -1091,12 +1091,12 @@ function OrionLib:MakeWindow(WindowConfig)
 				DropdownConfig = DropdownConfig or {}
 				DropdownConfig.Name = DropdownConfig.Name or "Dropdown"
 				DropdownConfig.Options = DropdownConfig.Options or {}
-				DropdownConfig.Bitstream Vera Sans = DropdownConfig.Bitstream Vera Sans or ""
+				DropdownConfig.Default = DropdownConfig.Default or ""
 				DropdownConfig.Callback = DropdownConfig.Callback or function() end
 				DropdownConfig.Flag = DropdownConfig.Flag or nil
 				DropdownConfig.Save = DropdownConfig.Save or false
 
-				local Dropdown = {Value = DropdownConfig.Bitstream Vera Sans, Options = DropdownConfig.Options, Buttons = {}, Toggled = false, Type = "Dropdown", Save = DropdownConfig.Save}
+				local Dropdown = {Value = DropdownConfig.Default, Options = DropdownConfig.Options, Buttons = {}, Toggled = false, Type = "Dropdown", Save = DropdownConfig.Save}
 				local MaxElements = 5
 
 				if not table.find(Dropdown.Options, Dropdown.Value) then
@@ -1128,7 +1128,7 @@ function OrionLib:MakeWindow(WindowConfig)
 						AddThemeObject(SetProps(MakeElement("Label", DropdownConfig.Name, 15), {
 							Size = UDim2.new(1, -12, 1, 0),
 							Position = UDim2.new(0, 12, 0, 0),
-							Font = Bitstream Vera Sans,
+							Font = BitstreamVeraSans,
 							Name = "Content"
 						}), "Text"),
 						AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://7072706796"), {
@@ -1244,7 +1244,7 @@ function OrionLib:MakeWindow(WindowConfig)
 			end
 			function ElementFunction:AddBind(BindConfig)
 				BindConfig.Name = BindConfig.Name or "Bind"
-				BindConfig.Bitstream Vera Sans = BindConfig.Bitstream Vera Sans or Enum.KeyCode.Unknown
+				BindConfig.Default = BindConfig.Default or Enum.KeyCode.Unknown
 				BindConfig.Hold = BindConfig.Hold or false
 				BindConfig.Callback = BindConfig.Callback or function() end
 				BindConfig.Flag = BindConfig.Flag or nil
@@ -1265,7 +1265,7 @@ function OrionLib:MakeWindow(WindowConfig)
 					AddThemeObject(MakeElement("Stroke"), "Stroke"),
 					AddThemeObject(SetProps(MakeElement("Label", BindConfig.Name, 14), {
 						Size = UDim2.new(1, 0, 1, 0),
-						Font = Bitstream Vera Sans,
+						Font = BitstreamVeraSans,
 						TextXAlignment = Enum.TextXAlignment.Center,
 						Name = "Value"
 					}), "Text")
@@ -1278,7 +1278,7 @@ function OrionLib:MakeWindow(WindowConfig)
 					AddThemeObject(SetProps(MakeElement("Label", BindConfig.Name, 15), {
 						Size = UDim2.new(1, -12, 1, 0),
 						Position = UDim2.new(0, 12, 0, 0),
-						Font = Bitstream Vera Sans,
+						Font = BitstreamVeraSans,
 						Name = "Content"
 					}), "Text"),
 					AddThemeObject(MakeElement("Stroke"), "Stroke"),
@@ -1358,7 +1358,7 @@ function OrionLib:MakeWindow(WindowConfig)
 					BindBox.Value.Text = Bind.Value
 				end
 
-				Bind:Set(BindConfig.Bitstream Vera Sans)
+				Bind:Set(BindConfig.Default)
 				if BindConfig.Flag then				
 					OrionLib.Flags[BindConfig.Flag] = Bind
 				end
@@ -1367,7 +1367,7 @@ function OrionLib:MakeWindow(WindowConfig)
 			function ElementFunction:AddTextbox(TextboxConfig)
 				TextboxConfig = TextboxConfig or {}
 				TextboxConfig.Name = TextboxConfig.Name or "Textbox"
-				TextboxConfig.Bitstream Vera Sans = TextboxConfig.Bitstream Vera Sans or ""
+				TextboxConfig.Default = TextboxConfig.Default or ""
 				TextboxConfig.TextDisappear = TextboxConfig.TextDisappear or false
 				TextboxConfig.Callback = TextboxConfig.Callback or function() end
 
@@ -1404,7 +1404,7 @@ function OrionLib:MakeWindow(WindowConfig)
 					AddThemeObject(SetProps(MakeElement("Label", TextboxConfig.Name, 15), {
 						Size = UDim2.new(1, -12, 1, 0),
 						Position = UDim2.new(0, 12, 0, 0),
-						Font = Bitstream Vera Sans,
+						Font = BitstreamVeraSans,
 						Name = "Content"
 					}), "Text"),
 					AddThemeObject(MakeElement("Stroke"), "Stroke"),
@@ -1424,7 +1424,7 @@ function OrionLib:MakeWindow(WindowConfig)
 					end	
 				end)
 
-				TextboxActual.Text = TextboxConfig.Bitstream Vera Sans
+				TextboxActual.Text = TextboxConfig.Default
 
 				AddConnection(Click.MouseEnter, function()
 					TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 3)}):Play()
@@ -1446,13 +1446,13 @@ function OrionLib:MakeWindow(WindowConfig)
 			function ElementFunction:AddColorpicker(ColorpickerConfig)
 				ColorpickerConfig = ColorpickerConfig or {}
 				ColorpickerConfig.Name = ColorpickerConfig.Name or "Colorpicker"
-				ColorpickerConfig.Bitstream Vera Sans = ColorpickerConfig.Bitstream Vera Sans or Color3.fromRGB(255,255,255)
+				ColorpickerConfig.Default = ColorpickerConfig.Default or Color3.fromRGB(255,255,255)
 				ColorpickerConfig.Callback = ColorpickerConfig.Callback or function() end
 				ColorpickerConfig.Flag = ColorpickerConfig.Flag or nil
 				ColorpickerConfig.Save = ColorpickerConfig.Save or false
 
 				local ColorH, ColorS, ColorV = 1, 1, 1
-				local Colorpicker = {Value = ColorpickerConfig.Bitstream Vera Sans, Toggled = false, Type = "Colorpicker", Save = ColorpickerConfig.Save}
+				local Colorpicker = {Value = ColorpickerConfig.Default, Toggled = false, Type = "Colorpicker", Save = ColorpickerConfig.Save}
 
 				local ColorSelection = Create("ImageLabel", {
 					Size = UDim2.new(0, 18, 0, 18),
@@ -1527,7 +1527,7 @@ function OrionLib:MakeWindow(WindowConfig)
 						AddThemeObject(SetProps(MakeElement("Label", ColorpickerConfig.Name, 15), {
 							Size = UDim2.new(1, -12, 1, 0),
 							Position = UDim2.new(0, 12, 0, 0),
-							Font = Bitstream Vera Sans,
+							Font = BitstreamVeraSans,
 							Name = "Content"
 						}), "Text"),
 						ColorpickerBox,
@@ -1698,7 +1698,7 @@ function OrionLib:MakeWindow(WindowConfig)
 				AddThemeObject(SetProps(MakeElement("Label", "Premium Features", 14), {
 					Size = UDim2.new(1, -150, 0, 14),
 					Position = UDim2.new(0, 150, 0, 112),
-					Font = Bitstream Vera Sans
+					Font = BitstreamVeraSans
 				}), "Text"),
 				AddThemeObject(SetProps(MakeElement("Label", "This part of the script is locked to Sirius Premium users. Purchase Premium in the Discord server (discord.gg/sirius)", 12), {
 					Size = UDim2.new(1, -200, 0, 14),
